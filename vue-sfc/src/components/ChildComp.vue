@@ -10,7 +10,7 @@ const props = defineProps({
 
 
 <!--випромінювання події батьківському компоненту -->
-<script setup>
+<!-- <script setup>
 const emit = defineEmits(['response'])
 
 emit('response', 'привіт від дочі')
@@ -18,4 +18,9 @@ emit('response', 'привіт від дочі')
 
 <template>
     <h2>Дочірній компонент</h2>
-</template>
+</template> -->
+
+<!-- Слоти -->
+<!-- <template>
+    <slot>Запасний контент</slot>
+</template> -->

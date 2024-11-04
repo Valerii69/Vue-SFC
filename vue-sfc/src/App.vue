@@ -73,7 +73,6 @@ onMounted(() => {
   <p ref="pElementRef">Привіт</p>
 </template> -->
 
-
 <!-- 10 спостерігачі -->
 <!-- <script setup>
 import { ref, watch } from 'vue'
@@ -114,7 +113,7 @@ const greeting = ref('Привіт від батьківського компо�
 </template> -->
 
 <!-- випромінювання події батьківському компоненту -->
-<script setup>
+<!-- <script setup>
 import { ref } from 'vue'
 import ChildComp from './components/ChildComp.vue'
 
@@ -124,4 +123,182 @@ const childMsg = ref('Поки що немає повідомлення від �
 <template>
   <ChildComp @response="(arg) => childMsg = arg" />
   <p>{{ childMsg }}</p>
+</template> -->
+
+<!-- Слоти -->
+<!-- <script setup>
+import { ref } from 'vue'
+import ChildComp from './components/ChildComp.vue'
+
+const msg = ref('з батьківського компонента')
+</script>
+
+<template>
+  <ChildComp> Повідомлення:{{ msg }}</ChildComp>
+</template> -->
+
+<!--Цей приклад демонструє обробку введення користувача за допомогою директиви v-on.-->
+<!-- <script setup>
+
+import { ref } from 'vue'
+
+const message = ref('Привіт світ!')
+
+function reverseMessage() {
+  // Доступ/зміна значення реквізиту через його властивість .value.
+  message.value = message.value.split('').reverse().join('')
+}
+
+function notify() {
+  alert('навігацію було припинено.')
+}
+</script>
+
+<template>
+
+  <h1>{{ message }}</h1>
+
+
+  <button @click="reverseMessage">Повідомлення навиворіт</button>
+
+
+  <button @click="message += '!'">Додати "!"</button>
+
+  <a href="https://vuejs.org" @click.prevent="notify">
+    Посилання з e.preventDefault()
+  </a>
+</template>
+
+<style>
+button,
+a {
+  display: block;
+  margin-bottom: 1em;
+}
+</style> -->
+
+<!--Тут ми прив'язуємо реактивно атрибути / властивості елемента до стану.Синтаксис :title є скороченням від v-bind:title.
+-->
+<!-- <script setup>
+import { ref } from 'vue'
+
+const message = ref('Привіт, світе!')
+const isRed = ref(true)
+const color = ref('green')
+
+function toggleRed() {
+  isRed.value = !isRed.value
+}
+
+function toggleColor() {
+  color.value = color.value === 'green' ? 'blue' : 'green'
+}
+</script>
+
+<template>
+  <p>
+    <span :title="message">
+      Наведіть на мене вказівник миші на кілька секунд, щоб побачити мій
+      динамічно пов'язаний заголовок!
+    </span>
+  </p>
+
+
+  <p :class="{ red: isRed }" @click="toggleRed">
+    Це має бути червоним... але натисніть мене, щоб перемкнути це.
+  </p>
+
+  
+  <p :style="{ color }" @click="toggleColor">
+    Це має бути зеленим і має перемикатися між зеленим і синім після
+    натискання.
+  </p>
+</template>
+
+<style>
+.red {
+  color: red;
+  cursor: pointer;
+}
+</style> -->
+
+<!--Ми можемо відтворювати вміст умовно або в циклі за допомогою директив v-if і v-for.-->
+<!-- <script setup>
+ 
+import { ref } from 'vue'
+
+const show = ref(true)
+const list = ref([1, 2, 3])
+</script>
+
+<template>
+  <button @click="show = !show">Сховати/показати список</button>
+  <button @click="list.push(list.length+1)">Додати число</button>
+  <button @click="list.pop()">Забрати число</button>
+  <button @click="list.reverse()">Зробити список зворотнім</button>
+
+  <ul v-if="show && list.length">
+    <li v-for="item of list">{{ item }}</li>
+  </ul>
+  <p v-else-if="list.length">Список не порожній, але прихований.</p>
+  <p v-else>Список порожній.</p>
+</template> -->
+
+<!--Ми можемо створювати двосторонні зв'язки між вхідними даними стану та форми за допомогою директиви v-model.-->
+<script setup>
+import { ref } from 'vue'
+
+const text = ref('Редагувати мене')
+const checked = ref(true)
+const checkedNames = ref(['Петро'])
+const picked = ref('Один')
+const selected = ref('А')
+const multiSelected = ref(['А'])
+</script>
+
+<template>
+  <h2>Введення тексту</h2>
+  <input v-model="text"> {{ text }}
+
+  <h2>Прапорець</h2>
+  <input type="checkbox" id="checkbox" v-model="checked">
+  <label for="checkbox">Відмічено: {{ checked }}</label>
+
+  <!--  кілька прапорців можуть бути прив'язані до одного значення v-model масиву  -->
+  <h2>Прапорці декількох значень</h2>
+  <input type="checkbox" id="petro" value="Петро" v-model="checkedNames">
+  <label for="petro">Петро</label>
+  <input type="checkbox" id="mary" value="Марічка" v-model="checkedNames">
+  <label for="mary">Марічка</label>
+  <input type="checkbox" id="iren" value="Ірина" v-model="checkedNames">
+  <label for="iren">Ірина</label>
+  <p>Відмічені імена:
+  <pre>{{ checkedNames }}</pre>
+  </p>
+
+  <h2>Радіобокс</h2>
+  <input type="radio" id="one" value="Один" v-model="picked">
+  <label for="one">Один</label>
+  <br>
+  <input type="radio" id="two" value="Два" v-model="picked">
+  <label for="two">Два</label>
+  <br>
+  <span>Обрано: {{ picked }}</span>
+
+  <h2>Вибирання</h2>
+  <select v-model="selected">
+    <option disabled value="">Виберіть один, будь ласка</option>
+    <option>А</option>
+    <option>Б</option>
+    <option>В</option>
+  </select>
+  <span>Обрано: {{ selected }}</span>
+
+  <h2>Вибирання декількох значень</h2>
+  <select v-model="multiSelected" multiple style="width:100px">
+    <option>А</option>
+    <option>Б</option>
+    <option>В</option>
+  </select>
+  <span>Обрано: {{ multiSelected }}</span>
 </template>
