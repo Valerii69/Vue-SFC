@@ -386,8 +386,7 @@ code {
 <!--
 Приклад створення багаторазового компонента таблиці та його використання із зовнішніми даними.
 -->
-
-<script setup>
+<!-- <script setup>
 import DemoGrid from './components/GridForm.vue'
 import { ref } from 'vue'
 
@@ -407,4 +406,34 @@ const gridData = [
   </form>
   <DemoGrid :data="gridData" :columns="gridColumns" :filter-key="searchQuery">
   </DemoGrid>
+</template> -->
+
+<script>
+export default {
+  data() {
+    return {
+      cost: 5,
+      amount: 20,
+    };
+  },
+  computed: {
+    price: function () {
+      return this.cost * this.amount;
+    }
+  },
+  methods: {
+    changeCost() {
+      // Зміна значення cost, наприклад, на 1
+      this.amount += 1; // Можете змінити логіку за потреби
+    }
+  }
+}
+</script>
+
+<template>
+  <button @click="changeCost">Змінити вартість</button>
+  <p>Вартість: {{ cost }}</p>
+  <p>кількість: {{ amount }}</p>
+  <p>Ціна: {{ price }}</p>
+
 </template>
