@@ -327,7 +327,7 @@ const itemsList = ref([
 <!--
 Простий редактор коду.
 -->
-<script setup>
+<!-- <script setup>
 import { marked } from 'marked'
 import { debounce } from 'lodash-es'
 import { ref, computed } from 'vue'
@@ -381,4 +381,30 @@ body {
 code {
   color: #f66;
 }
-</style>
+</style> -->
+
+<!--
+Приклад створення багаторазового компонента таблиці та його використання із зовнішніми даними.
+-->
+
+<script setup>
+import DemoGrid from './components/GridForm.vue'
+import { ref } from 'vue'
+
+const searchQuery = ref('')
+const gridColumns = ['імя', 'сила']
+const gridData = [
+  { 'імя': 'Чак Норріс', 'сила': Infinity },
+  { 'імя': 'Брюс Лі', 'сила': 9000 },
+  { 'імя': 'Джекі Чан', 'сила': 7000 },
+  { 'імя': 'Джет Лі', 'сила': 8000 }
+]
+</script>
+
+<template>
+  <form id="search">
+    Пошук <input name="query" v-model="searchQuery">
+  </form>
+  <DemoGrid :data="gridData" :columns="gridColumns" :filter-key="searchQuery">
+  </DemoGrid>
+</template>
