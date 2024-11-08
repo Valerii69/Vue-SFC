@@ -408,7 +408,7 @@ const gridData = [
   </DemoGrid>
 </template> -->
 
-<script>
+<!-- <script>
 export default {
   data() {
     return {
@@ -436,4 +436,123 @@ export default {
   <p>кількість: {{ amount }}</p>
   <p>Ціна: {{ price }}</p>
 
-</template>
+</template> -->
+
+<!-- 
+<script setup>
+import { ref } from 'vue'
+let input = ref('привіт')
+
+function inputFunc(event) {
+  event.preventDefault();
+  alert('це буде один раз')
+
+}
+
+</script>
+<template>
+
+  <a href="https://example.com" @click.once="inputFunc">{{ input }}</a>
+</template> -->
+
+<!-- <script setup>
+import { ref } from 'vue';
+
+let visible = ref(true);
+let visible2 = ref(true);
+let visible3 = ref(true);
+
+
+function toggle() {
+  visible.value = !visible.value; // Використовуємо .value для зміни значення ref
+}
+function toggle2() {
+  visible2.value = !visible2.value; // Використовуємо .value для зміни значення ref
+}
+function toggle3() {
+  visible3.value = !visible3.value; // Використовуємо .value для зміни значення ref
+}
+</script>
+
+<template>
+  <button @click="toggle">	{{ visible ? 'hide' : 'show' }}</button>
+  <p v-if="visible">text</p>
+  <button @click="toggle2">{{ visible2 ? 'hide' : 'show' }}</button>
+  <p v-if="visible2">text2</p>
+  <button @click="toggle3">{{ visible3 ? 'hide' : 'show' }}</button>
+  <p v-if="visible3">text3</p></template> -->
+
+<!-- <script setup>
+import { computed } from 'vue';
+let day = new Date
+let days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+console.log(days[5]);
+// Визначаємо назву поточного дня тижня
+const currentDay = computed(() => days[day.getDay()]);
+console.log(currentDay);
+</script>
+
+<template >
+  <p v-if="currentDay === days[0]">Сегодня воскресенье</p>
+  <p v-else-if="currentDay === days[1]">Сегодня понедельник</p>
+  <p v-else-if="currentDay === days[2]">Сегодня вторник</p>
+  <p v-else-if="currentDay === days[3]">Сегодня среда</p>
+  <p v-else-if="currentDay === days[4]">Сегодня четверг</p>
+  <p v-else-if="currentDay === days[5]">Сегодня пятница</p>
+  <p v-else>Сегодня суббота</p>
+</template> -->
+
+
+<!-- <script setup>
+import {  ref } from 'vue';
+
+let old = ref(0)
+
+console.log(old);
+
+
+</script>
+
+<template >
+  <input type="number" v-model="old" placeholder="Введіть вік" />
+  <p v-if='old < 18'>Дитя</p>
+  <p v-else-if='old >=18 && old<=25'>Студент</p>
+  <p v-else-if="old >= 26 && old <= 59 ">Військовозобов'язаний</p>
+  <p v-else-if="old >= 60">Старий пеньок</p>
+
+</template>  -->
+
+<!-- <script setup>
+
+import { ref } from 'vue';
+
+let isAuth = ref(true);
+
+function toggle() {
+  isAuth.value=!isAuth.value
+}
+
+</script>
+
+<template >
+
+  <button @click="toggle">{{ isAuth ? 'hide' : 'show' }}</button>
+  <p v-if="isAuth">+++</p>
+  <p v-if="isAuth">+++</p>
+    <p v-if="isAuth">+++</p>
+
+</template> -->
+
+
+<script setup>
+import { ref } from 'vue'
+
+const isVisibility = ref(true);
+</script>
+<template >
+
+  <button @click="isVisibility = !isVisibility">Toggle visibility</button>
+  <p v-show="isVisibility">Цей абзац може бути прихований або показаний.</p>
+
+</template >
+
