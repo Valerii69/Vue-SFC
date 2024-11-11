@@ -595,7 +595,7 @@ const obj = ref({
 
   </template>
 </template> -->
-  
+
 <!-- Перебор массива объектов в Vue -->
 <!-- <script setup>
 import { ref} from 'vue'
@@ -690,19 +690,39 @@ const arr = ref([1, -2, -3, -4, 5]);
 <script setup>
 import { ref } from 'vue'
 const arr = ref(['a', 'b', 'c']);
+const message = ref('');
+
+// Set a value for `message`, then convert it to uppercase
+
+message.value = message.value.toUpperCase();
 
 function add() {
   const letters = 'abcdefghijklmnopqrstuvwxyz';
   const randomLetter = letters[Math.floor(Math.random() * letters.length)];
-  arr.value.push(randomLetter); 
+  arr.value.push(randomLetter);
 }
 </script>
 
 <template>
+  <ul>
+    <li v-for="(elem, index) in arr" :key="index" :style="{
+      color: 'blue', border: '1px solid green', listStyle: 'none', display: 'flex',
+      justifyContent: 'center', fontSize: '30px', width: '130px', fontWeight:'bold' }">
 
-    <p v-for="(elem,index) in arr" :key="index">
       {{ elem }}
-    </p>
-    <button @click="add">add</button>
+    </li>
+  </ul>
+ 
+  <button @click="add">add</button>
 
+ <input v-model="message">
+  <p>{{ message }}</p>
 </template>
+<!-- <style>
+li {
+  color: red;
+list-style: none;
+display: flex;
+justify-content: center;
+}
+</style> -->
