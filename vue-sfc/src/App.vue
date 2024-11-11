@@ -691,7 +691,7 @@ const arr = ref([1, -2, -3, -4, 5]);
 import { ref } from 'vue'
 const arr = ref(['a', 'b', 'c']);
 const message = ref('');
-
+console.log(message);
 // Set a value for `message`, then convert it to uppercase
 
 message.value = message.value.toUpperCase();
@@ -712,11 +712,12 @@ function add() {
       {{ elem }}
     </li>
   </ul>
- 
+
   <button @click="add">add</button>
 
- <input v-model="message">
+  <input v-model="message">
   <p>{{ message }}</p>
+ 
 </template>
 <!-- <style>
 li {
