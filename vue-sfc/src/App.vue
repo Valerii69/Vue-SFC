@@ -542,7 +542,7 @@ function toggle() {
     <p v-if="isAuth">+++</p>
 
 </template> -->
-
+<!-- 
 
 <script setup>
 import { ref } from 'vue'
@@ -554,5 +554,155 @@ const isVisibility = ref(true);
   <button @click="isVisibility = !isVisibility">Toggle visibility</button>
   <p v-show="isVisibility">Цей абзац може бути прихований або показаний.</p>
 
-</template >
+</template > -->
 
+<!-- Перебор массивов в Vue -->
+<!-- <script setup>
+import { ref, computed } from 'vue'
+const arr = ref([1, 2, 3, 4, 5]);
+const squaredArr = computed(() => arr.value.map(elem => (elem ** 2)));
+</script>
+<template>
+<ul>
+  <li v-for="elem in squaredArr" :key="elem">{{ elem}}</li></ul>
+</template> -->
+
+<!-- Получение ключей при переборе массивов в Vue
+<script setup>
+import { ref, computed } from 'vue'
+const arr = ref([1, 2, 3, 4, 5]);
+const squaredArr = computed(() => arr.value.map(elem => (elem ** 2)));
+</script>
+<template>
+<ul>
+  <li v-for="(elem,key) in squaredArr" :key="elem">id:{{ key +1}} Elem: {{elem}}</li></ul>
+</template> -->
+
+<!-- Перебор объектов в Vue -->
+<!-- <script setup>
+import { ref} from 'vue'
+const obj = ref({
+  user1: '100$',
+  user2: '200$',
+  user3: '300$',
+});
+// const squaredArr = computed(() => arr.value.map(elem => (elem ** 2)));
+</script>
+<template>
+  <template v-for="(key, elem) in obj" :key="elem">
+
+    <p> {{ elem }}-{{ key }} </p>
+
+  </template>
+</template> -->
+  
+<!-- Перебор массива объектов в Vue -->
+<!-- <script setup>
+import { ref} from 'vue'
+const users = ref([
+  {
+    name: 'name1',
+    surn: 'surn1',
+  },
+  {
+    name: 'name2',
+    surn: 'surn2',
+  },
+  {
+    name: 'name3',
+    surn: 'surn3',
+  },
+]);
+
+</script>
+<template>
+  <template v-for="(user, index) in users" :key="index">
+    <p>
+     {{ user.index }}  {{ user.name }} - {{ user.surn }}
+    </p>
+  </template>
+</template>  -->
+<!-- <script setup>
+import { ref } from 'vue'
+const hrefs = ref([
+  { href: '1.html', text: 'text1' },
+  { href: '2.html', text: 'text2' },
+  { href: '3.html', text: 'text3' },
+]);
+
+</script>
+<template>
+  <ul>
+    <li v-for="(item, index) in hrefs" :key="index">
+      <a :href="item.href">{{ item.text }}</a>
+    </li>
+  </ul>
+</template> -->
+
+<!-- <script setup>
+import { ref } from 'vue'
+const products = ref([
+  {
+    name: 'product1',
+    price: 100,
+    quantity: 5
+  },
+  {
+    name: 'product2',
+    price: 200,
+    quantity: 4
+  },
+  {
+    name: 'product3',
+    price: 300,
+    quantity: 3
+  },
+]);
+
+</script>
+<template>
+  <table v-for="(item, index) in products" :key="index">
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.price }}</td>
+      <td>{{ item.quantity }}</td>
+    </tr>
+
+  </table>
+</template> -->
+<!-- 
+<script setup>
+import { ref} from 'vue'
+const arr = ref([1, -2, -3, -4, 5]);
+</script>
+ <template>
+  <ul>
+    <template v-for="(elem,index) in arr" :key="index">
+      <li v-if="elem >0" >
+        {{ elem }}
+      </li>
+    </template>
+  </ul>
+</template> -->
+
+
+<!-- Реактивность массивов в Vue -->
+<script setup>
+import { ref } from 'vue'
+const arr = ref(['a', 'b', 'c']);
+
+function add() {
+  const letters = 'abcdefghijklmnopqrstuvwxyz';
+  const randomLetter = letters[Math.floor(Math.random() * letters.length)];
+  arr.value.push(randomLetter); 
+}
+</script>
+
+<template>
+
+    <p v-for="(elem,index) in arr" :key="index">
+      {{ elem }}
+    </p>
+    <button @click="add">add</button>
+
+</template>
